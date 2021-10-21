@@ -1,0 +1,19 @@
+# Author Haris Khan
+# Email: haris.khan@zifornd.com
+
+from snakemake.utils import min_version
+
+min_version("6.4.0")
+
+configfile: "config/config.yaml"
+
+report: "report/workflow.rst"
+
+include: "rules/common.smk"
+include: "rules/fastqc.smk"
+include: "rules/bowtie.smk"
+include: "rules/homer.smk"
+
+rule default:
+    input:
+        expand("results/visualisation/{sample}/{sample}.bam")
