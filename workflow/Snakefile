@@ -16,4 +16,4 @@ include: "rules/homer.smk"
 
 rule default:
     input:
-        expand("results/visualisation/{sample}/{sample}.bam")
+        expand("results/visualisation/{sample}/{sample}.bedgraph")
