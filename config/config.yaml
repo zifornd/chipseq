@@ -22,5 +22,4 @@ trimming:
   activate: False
 
 params:
-  cutadapt-pe: ""
-  cutadapt-se: ""
+  cutadapt-seq: ""
