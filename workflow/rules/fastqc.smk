@@ -3,7 +3,7 @@
 
 rule fastqc:
     input:
-        files = "results/fastq/{sample}/{sample}.fastq.gz",
+        files = "results/fastq/{sample}/{sample}.fastq.gz"
     output:
         multitext("results/fastcq/{sample}/{sample}.html", ".zip")
     threads:
