@@ -1,2 +1,26 @@
 # Author Haris Khan
 # Email: haris.khan@zifornd.com
+
+
+# path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+samples: config/samples.tsv
+# path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+# Units are technical replicates (e.g. lanes, or resequencing of the same biological
+# sample).
+units: config/units.tsv
+
+
+ref:
+  # Ensembl species name
+  species: Drosophila_melanogaster
+  # Ensembl release (make sure to take one where snpeff data is available, check 'snpEff databases' output)
+  release: 32
+  # Genome build
+  build: dm6
+
+trimming:
+  activate: False
+
+params:
+  cutadapt-pe: ""
+  cutadapt-se: ""
