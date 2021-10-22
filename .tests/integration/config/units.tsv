@@ -1,3 +1,3 @@
-sample  unit	fragment_len_mean	fq1
+sample unit	fragment_len_mean	fq1
 test_IP 1	50	data/IP_test.fastq.gz
 test_IN 1	50	data/IN_test.fastq.gz
