@@ -1,2 +1,7 @@
 # Author Haris Khan
 # Email: haris.khan@zifornd.com
+
+samples: config/samples.tsv
+units: config/units.tsv
+organism: org.Dm.eg.db
+annotation: org.Dm.eg.db

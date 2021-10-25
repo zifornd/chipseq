@@ -1,14 +1,11 @@
 # Author Haris Khan
 # Email: haris.khan@zifornd.com
 
-# Things to be added:
-    # Paired vs single end reads
-    # IP/Input Config
 
 rule homer:
     input:
-        IP=expand("{IP}_out/{IP}.bam", IP=IP),
-        input=expand("{input}_out/{input}.bam", input=input)
+        files = expand("{IP}_out/{IP}.bam", IP=IP),
+        input = expand("{input}_out/{input}.bam", input=input)
     output:
         "results/peak_calls/{IP}.bed"
         "results/visualisation/{SRR}.bedgraph"

@@ -1,3 +1,4 @@
-sample	condition	batch
-test_IP	IP	NA
-test_IN	IN	NA
+sample	group	batch_effect	control	antibody
+A	CrebA	batch1	B	No
+B	CrebA	batch1		
+
