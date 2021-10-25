@@ -6,7 +6,7 @@ rule index_bowtie:
     input:
         "genomepy/{genome}/{genome}.fa"
     output:
-        "{genome}/{genome}.ebwt"
+        "results/{genome}/{genome}.ebwt"
     threads: 8
     conda:
         "../envs/environment.yaml"
@@ -17,15 +17,15 @@ rule index_bowtie:
 
 rule bowtie:
     input:
-        files="raw/{SRR}.fastq",
+        files="results/{sample}.fastq.gz",
         index="{genome}/{genome}.ebwt"
     output:
-        temp("{SRR}_out/{SRR}.sam")
+        out = temp("{sample}/{sample}.sam")
     threads:
         16
     conda:
         "../envs/environment.yaml"
     shell:
         """
-        bowtie {genome}/{genome} -p 8 -m 1 -S {input.files} > {wildcards.SRR}_out/{wildcards.SRR}.sam
+        bowtie results/{genome}/{genome} -p 8 -m 1 -S {input.files} > {output.out}
         """

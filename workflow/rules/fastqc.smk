@@ -5,7 +5,7 @@ rule fastqc:
     input:
         files = "results/fastq/{sample}/{sample}.fastq.gz"
     output:
-        multitext("results/fastcq/{sample}/{sample}.html", ".zip")
+        multiext("results/fastqc/{sample}/{sample}.html", ".zip")
     threads:
         16
     params:

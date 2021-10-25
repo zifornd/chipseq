@@ -1,0 +1,3 @@
+WorkflowError:
+Config file must be given as JSON or YAML with keys at top level.
+  File "/home/haris934/git/chipseq/workflow/Snakefile", line 8, in <module>
