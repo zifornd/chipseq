@@ -3,14 +3,19 @@
 
 rule fastqc:
     input:
-        files="raw/{SRR}.fastq.gz",
+        files = "results/fastq/{sample}/{sample}.fastq.gz"
     output:
-        multitext("{SRR}_out/{SRR}.html", ".zip")
+        multiext("results/fastqc/{sample}/{sample}.html", ".zip")
     threads:
         16
+    params:
+        out = "results/fastqc/{sample}"
+    log:
+        out = "results/fastqc/{sample}/{sample}_fastqc.out",
+        err = "results/fastqc/{sample}/{sample}_fastqc.err"
     conda:
         "../envs/environment.yaml"
     shell:
         """
-        "fastqc -o {SRR} -t {threads} {{SRR}.fastq.gz}"
+        "fastqc -o {params.out} -t {threads} {sample}.fastq.gz 1> {log.out} 2> {log.err}"
         """
