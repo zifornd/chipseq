@@ -1,0 +1,8 @@
+# Author Haris Khan
+# Email: haris.khan@zifornd.com
+name: environment
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - genomepy

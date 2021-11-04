@@ -1,4 +1,3 @@
 samples: config/samples.tsv
 units: config/units.tsv
-organism: org.Dm.eg.db
-annotation: org.Dm.eg.db
+genome: BDGP6.32

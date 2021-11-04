@@ -1,21 +1,30 @@
 # Author Haris Khan
 # Email: haris.khan@zifornd.com
 
+
 rule fastqc:
     input:
-        files = "results/fastq/{sample}/{sample}.fastq.gz"
+        files = "results/fastq/{sample}-{unit}.fastq"
     output:
-        multiext("results/fastqc/{sample}/{sample}.html", ".zip")
+        multiext("results/fastqc/{sample}-{unit}_fastqc", ".html", ".zip")
     threads:
-        16
+        8
     params:
-        out = "results/fastqc/{sample}"
+        out = "results/fastqc"
     log:
-        out = "results/fastqc/{sample}/{sample}_fastqc.out",
-        err = "results/fastqc/{sample}/{sample}_fastqc.err"
+        out = "results/fastqc/{sample}-{unit}_fastqc.out",
+        err = "results/fastqc/{sample}-{unit}_fastqc.err"
     conda:
-        "../envs/environment.yaml"
+        "../envs/qc.yaml"
     shell:
-        """
-        "fastqc -o {params.out} -t {threads} {sample}.fastq.gz 1> {log.out} 2> {log.err}"
-        """
+        "fastqc -o {params.out} -t {threads} {input} 1> {log.out} 2> {log.err}"
+
+rule multiqc:
+    input:
+        get_multiqc_input()
+    output:
+        "results/multiqc/multiqc.html"
+    log:
+        "logs/multiqc.log"
+    wrapper:
+        "0.64.0/bio/multiqc"
