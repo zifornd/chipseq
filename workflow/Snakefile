@@ -1,20 +1,22 @@
 # Author Haris Khan
 # Email: haris.khan@zifornd.com
 
-from snakemake.utils import min_version
 
-min_version("6.4.0")
 
 configfile: "config/config.yaml"
 
 report: "report/workflow.rst"
 
 include: "rules/common.smk"
+include: "rules/fastq.smk"
 include: "rules/trim.smk"
 include: "rules/fastqc.smk"
+include: "rules/genomepy.smk"
 include: "rules/bowtie.smk"
-include: "rules/homer.smk"
+include: "rules/macs2.smk"
 
-rule default:
+
+# Target rule
+rule all:
     input:
-        expand("results/visualisation/{sample}/{sample}.bedgraph")
+        get_final_output()

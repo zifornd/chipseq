@@ -1,4 +1,4 @@
-sample	group	batch_effect	control	antibody
-A	CrebA	batch1	B	No
-B	CrebA	batch1		
+sample	group	batch_effect	control	antibody	filename
+A	CrebA	batch1	B	No	data/IP_test.fastq
+B	CrebA	batch1			data/IN_test.fastq
 

@@ -5,7 +5,10 @@ type: object
 
 properties:
 
-  samples:
+  sample:
+    type: string
+
+  unit:
     type: string
 
   organism:
@@ -15,6 +18,4 @@ properties:
     type: string
 
 required:
-  - samples
-  - organism
-  - annotation
+  - sample
