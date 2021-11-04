@@ -11,6 +11,8 @@ validate(samples, schema="../schemas/config.schema.yaml")
 
 units = pd.read_table(config["units"]).set_index(["sample", "unit"], drop=False).sort_index()
 
+genome = config["genome"]
+
 wildcard_constraints:
     sample = "|".join(samples["sample"]),
     unit = "|".join(units["unit"])
@@ -36,6 +38,7 @@ def get_final_output():
         output.append(f"results/bowtie2/sam/{sample}-{unit}.sam")
         output.append(f"results/bowtie2/bam/{sample}-{unit}.sorted.bam")
         output.append(f"results/macs2_callpeak/{sample}-{unit}.narrow_peaks.xls")
+        output.append(f"results/bigwig/{sample}-{unit}.bw")
 
     return output
 

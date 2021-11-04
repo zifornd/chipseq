@@ -14,6 +14,7 @@ include: "rules/fastqc.smk"
 include: "rules/genomepy.smk"
 include: "rules/bowtie.smk"
 include: "rules/macs2.smk"
+include: "rules/toBigWig.smk"
 
 
 # Target rule
