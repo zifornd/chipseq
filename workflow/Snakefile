@@ -14,9 +14,11 @@ include: "rules/fastqc.smk"
 include: "rules/genomepy.smk"
 include: "rules/bowtie.smk"
 include: "rules/macs2.smk"
+include: "rules/deeptools.smk"
 
 
 # Target rule
 rule all:
     input:
+        #expand("results/bowtie2/merged/{sample}.bam", sample = samples["sample"])
         get_final_output()

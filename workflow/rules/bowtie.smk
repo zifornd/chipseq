@@ -73,3 +73,29 @@ rule samtools_sort:
         "../envs/environment.yaml"
     shell:
         "samtools sort {input.inbam} -o {output.outbam}"
+
+
+rule samtools_merge:
+    input: 
+        samtools_merge
+    output:
+       "results/bowtie2/merged/{sample}.bam"
+    conda:
+        "../envs/environment.yaml"
+    shell:
+        "samtools merge {output} {input}"
+
+
+rule samtools_index:
+    input:
+        "results/bowtie2/merged/{sample}.bam"
+    output:
+        "results/bowtie2/merged/{sample}.bam.bai"
+    log:
+        "logs/samtools_index/{sample}.log"
+    params:
+        "" # optional params string
+    threads:  # Samtools takes additional threads through its option -@
+        4     # This value - 1 will be sent to -@
+    wrapper:
+        "0.79.0/bio/samtools/index"

@@ -24,7 +24,11 @@ def get_final_output():
     output = [
         "results/multiqc/multiqc.html",
         f"results/genomepy/{genome}/{genome}.fa",
-        f"results/bowtie2-build/{genome}.1.bt2"
+        f"results/bowtie2-build/{genome}.1.bt2",
+        "results/plots/plot_fingerprint/plot_fingerprint.png",
+        "results/deeptools/multibam.npz",
+        "results/plots/PCA_readCounts.png",
+        "results/plots/correlation_readCounts.png"
     ]
 
     for sample, unit in units.index:
@@ -35,6 +39,7 @@ def get_final_output():
         output.append(f"results/trimmed/{sample}-{unit}.qc.txt")
         output.append(f"results/bowtie2/sam/{sample}-{unit}.sam")
         output.append(f"results/bowtie2/bam/{sample}-{unit}.sorted.bam")
+        output.append(f"results/bowtie2/bam_index/{sample}-{unit}.sorted.bam.bai")
         output.append(f"results/macs2_callpeak/{sample}-{unit}.narrow_peaks.xls")
 
     return output
@@ -42,7 +47,7 @@ def get_final_output():
 
 def get_multiqc_input():
 
-    output = []
+    output = ["results/plots/plot_fingerprint/qc_metrics.txt"]
 
     for sample, unit in units.index:
 
@@ -54,6 +59,16 @@ def get_multiqc_input():
         output.append(f"results/trimmed/{sample}-{unit}.qc.txt")
 
     return output 
+
+def samtools_merge(wildcards):
+    
+    df = units
+
+    ix = (df["sample"] == wildcards.sample)
+
+    df = df.loc[ix, ]
+
+    return expand("results/bowtie2/bam/{sample}-{unit}.sorted.bam", sample = wildcards.sample, unit = df["unit"]) 
 
 
 def fastq_input(wildcards):
